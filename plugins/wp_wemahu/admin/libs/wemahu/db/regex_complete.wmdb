@@ -1,0 +1,29 @@
+> WMDBVN - 2014010501
+> WMDBFN - id,pattern,name,description,risk
+> WMDBPK - id
+1@@preg_replace\s*\(\s*[\"\']\s*(\W)(?-s).*\1[imsxADSUXJu\s]*e[imsxADSUXJu\s]*[\"\'].*\)@@Evaluating Regex@@The method preg_replace with evaluate option can execute php code. You should check if this code is part of the original file or was injected.@@3
+2@@(?:exec|passthru|shell_exec|system|proc_|popen)\s*\([\s\'\"]*(?:\$_GET|\$_POST|\$_REQUEST|getenv)@@Passing code to shell.@@This code seems to pass code from an input variable directly to the shell. This is most probably harmful.@@4
+3@@\$[\w]{1,50}\s?=\s?`.*`@@Backtick code execution@@This code seems to execute code using the backtick operator. This code may be malicious. You should check if it is part of the original file or was injected.@@2
+4@@RewriteCond\s*%\{HTTP_REFERER\}@@htaccess Rewrite@@This htaccess file contains a rewrite based on the referrer. This technique is often used by malware to redirect visitors to another page.@@3
+5@@eval[\s/\*\#]*\([\s/\*\#]*stripslashes[\s/\*\#]*\([\s/\*\#]*\$_(REQUEST|POST|GET)\s*\[\s*[\'\"]\s*.*\s*[\'\"]@@PHP code excution@@This snipped can be used to execute PHP code passed to the script. It is most probably harmful.@@3
+6@@GIF89a.*[\r\n]*.*<\?php@@PHP file masked as image@@PHP code was found in an image. This technique is often used in LFI attacks. You should delete this file if you do not know what it is.@@3
+7@@eva1fYlbakBcVSir|eva1tYldakBcVSir|eva1tYldakBoVS1r|eva1tYidokBoVSjr|eva1tYldokBcVSjr|eva1tYlbakBcVSir|eva1tYldakBcVSjr|eva1tYXdakAcVSjr|eva1tYidakBcVSjr|eva1tYidokBcVSjr@@Obfuscated PHP code@@This string is often found in obfuscated php code. It is most probably malware.@@4
+8@@str_rot13|eval\(base64_decode\(|eval\(gzinflate\(base64_decode\(|'base'\.\(32\*2\)\.'_de'\.'code@@Obfuscated PHP code@@This code seems to execute obfuscated PHP code. You should check it is part of the original file or was injected.@@1
+9@@eval\s?\(\s?"\?>"\s?\.\s?gzinflate\s?\(\s?base64_decode\(@@Obfuscated PHP code@@This code seems to execute obfuscated PHP code. You should check it is part of the original file or was injected.@@1
+10@@(\\x[0-9A-Fa-f]{1,2}){50,}\\x[0-9A-Fa-f]{1,2}@@Hexadecimal Notation@@This technique is often used to obfuscate malicious code. You should check it this code is part of the original file or was injected.@@2
+11@@(\\[0-7]{1,3}){50,}\\[0-7]{1,3}@@Octal Notation@@This technique is often used to obfuscate malicious code. You should check it this code is part of the original file or was injected.@@2
+12@@r0nin|m0rtix|upl0ad|r57shell|c99shell|shellbot|phpshell|void\.ru|phpremoteview|directmail|multiviews|cwings|vandal|bitchx|eggdrop|guardservices|psybnc|dalnet|undernet|vulnscan|spymeta|raslan58|Webshell|FilesMan|FilesTools|Web\sShell|ifrm|bckdrprm|hackmeplz|wrgggthhd|WSOsetcookie|Hmei7|Inbox\sMass\sMailer|HackTeam|Hackeado|h4ckcity\.org|ironwarez\.info|antichat\.ru|r3v3ng4ns|Dive\.0\.1|w\.dll|GFS\sweb-shell|Ma-EditioN|popeye\.snu\.ac\.kr|MySQL\sWeb\sInterface|n-c-c\.6x\.to|PHVayv|Data\sCha0s|x-perience\.org|ccteam\.ru|eXpl0id|xb5@hotmail\.com|SST\sSheller|azrail|botw44|h4ntu\sshell|iMHaPFTP|leethack\.info|IHSteam|TurkGuvenligi|MetalSoftHackersTeam|nShell|KingDefacer@@Common Webshell@@This string is often found in webshells. If you do not know this file it is most probably harmful.@@4
+13@\$j='ex'.\/\*\*\/'plode';@@OpenX malware@@This string is used in malware attacking OpenX.@@4
+14@\$credit=file_get_contents\('.*\/p\.php\?i='\.\$path\);@@Known Joomla malware@@This string was found in know Joomla malware.@@4
+15@@\$CM->return_links\(\);|@\$thor\(\s?\$hammer\);|@\$arg\s?=\s?create_function\("",\s?\$opt\[[0-9]{1,2}\]\s?\.\$opt\[[0-9]{1,2}\]@@Known wordpress malware.@@This code is part of known wordpress malware.@@4
+16@@strrev[\s/\*\#]*\([\s/\*\#]*[\'"]\s*tressa\s*[\'"]\s*\)@@PHP code execution@@This snipped is often used to execute malicious PHP code. You should check if this code is in the original file or was injected.@@3
+17@@\$_F\s*=\s*__FILE__\s*;\s*\$_X\s*=@@SourceCop Obfuscated Code@@This code seems to be obfuscated using the SourceCop tool. I most probably is malicious code.@@2
+18@@include\(\$_GET\['bug'\]@@Bug RFI/LFI@@This script is used to include remote/local php files. It is most probably malware.@@3
+19@@entrika\.php|FILE\sUPLOADED\sTO\s\$dez|The\sDark\sRaver@@File Uploader@@This code can be used to upload other malicious code. If you do not know this file it is most probably malware.@@3
+20@@z\.INIT\(\);|"ps="split";e=eval;v=|function zzzfff\(\)|ss=eval\("St"\+"ring"\)|if\(021===0x11\)v="val";@@Injected javascript@@This string is often found in malicious javascript injected into websites. It's most probably malware.@@4
+21@@([0-9A-Fa-f]{1,2}:){50,}[0-9A-Fa-f]{1,2}\s?("|')@@Javascript Obfuscation@@This code may contain obfuscated javascript code. You should compare the affected file with the original one to see if this code was injected.@@4
+22@@"([split]{1,3}"\s?\+\s?"){1,4}[plit]{0,3}"@@Javascript Obfuscation@@This code may contain obfuscated javascript code. You should compare the affected file with the original one to see if this code was injected.@@4
+23@@\(\s?([0-9]{1,3},){50,}[0-9]{1,3}\s?\)@@Javascript Obfuscation@@This code may contain obfuscated javascript code. You should compare the affected file with the original one to see if this code was injected.@@4
+24@@@\$_\[\]=@\!\+_;@@Non-alphanumeric obfuscation@@This code is part of PHP code that used only non-alphanumeric characters to obfuscate its purpose. It it most propably malware.@@4
+25@@string_cpt\s?\(\s?base64_decode\s?\(@@ESD Redirector@@This code is part of the ESD-Redirector Malware Script.@@4
+26@@\#[0-9a-f]{5,8}\#.+HTTP_USER_AGENT.+\#\/[0-9a-f]{5,8}\#@@Common Injection@@This code is often used to inject iframes e.g. into websites.@@4
