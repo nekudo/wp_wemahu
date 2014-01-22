@@ -11,6 +11,10 @@
  * @copyright nekudo.com
  * @author Simon Samtleben <support@nekudo.com>
  */
+if(php_sapi_name() !== 'cli')
+{
+	exit('CLI mode only.');
+}
 
 require_once __DIR__ . '/../../../wp-load.php';
 require_once __DIR__ . '/admin/libs/wemahu/src.php';
