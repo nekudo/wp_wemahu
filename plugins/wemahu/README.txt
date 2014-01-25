@@ -49,6 +49,12 @@ Features:
 3. Upload the `plugin-name` directory to the `/wp-content/plugins/` directory
 4. Activate the plugin in the Plugin dashboard
 
+== Screenshots ==
+
+1. Wemahu scanning a directory for malicious code.
+2. Results of a malware scan.
+3. Ruleset dialog. Multiple rulsets can be defined to scan specific folder e.g.
+
 == Changelog ==
 
 = 1.0.0 =

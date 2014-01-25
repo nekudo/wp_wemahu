@@ -47,15 +47,15 @@ class WemahuAjax
 		$WemahuSettings->auditSettings['filecheck']['regexCheck'] = ((int)$rulesetData['regex_check'] === 1) ? true : false;
 		$WemahuSettings->auditSettings['filecheck']['hashCheck'] = ((int)$rulesetData['hash_check'] === 1) ? true : false;
 		$WemahuSettings->auditSettings['filecheck']['scanDir'] = ABSPATH;
-		$WemahuSettings->auditSettings['filecheck']['tmpDir'] = WP_PLUGIN_DIR . '/wp_wemahu/tmp';
-		$WemahuSettings->auditSettings['filecheck']['pathRegexWhitelistUser'] = WP_PLUGIN_DIR . '/wp_wemahu/tmp/wemahu_regex_whitelist.wmdb';
+		$WemahuSettings->auditSettings['filecheck']['tmpDir'] = WP_PLUGIN_DIR . '/wemahu/tmp';
+		$WemahuSettings->auditSettings['filecheck']['pathRegexWhitelistUser'] = WP_PLUGIN_DIR . '/wemahu/tmp/wemahu_regex_whitelist.wmdb';
 		if(!empty($rulesetData['scandir']))
 		{
 			$WemahuSettings->auditSettings['filecheck']['scanDir'] = $rulesetData['scandir'];
 		}
 		if(!empty($rulesetData['regex_db']))
 		{
-			$WemahuSettings->auditSettings['filecheck']['pathRegexDb'] = WP_PLUGIN_DIR . '/wp_wemahu/admin/libs/wemahu/db/' . $rulesetData['regex_db'] . '.wmdb';
+			$WemahuSettings->auditSettings['filecheck']['pathRegexDb'] = WP_PLUGIN_DIR . '/wemahu/admin/libs/wemahu/db/' . $rulesetData['regex_db'] . '.wmdb';
 		}
 		if(!empty($rulesetData['filetypes']))
 		{
@@ -136,7 +136,7 @@ class WemahuAjax
 		$View = new WemahuTemplate;
 		$View->Report = $WemahuReport;
 		$this->JsonResponse->setType('report_success');
-		$this->JsonResponse->setData('reportHtml', $View->loadTemplate(WP_PLUGIN_DIR . '/wp_wemahu/admin/views/ajax/report.php'));
+		$this->JsonResponse->setData('reportHtml', $View->loadTemplate(WP_PLUGIN_DIR . '/wemahu/admin/views/ajax/report.php'));
 		echo $this->JsonResponse->getResponseData();
 		exit;
 	}
@@ -237,7 +237,7 @@ class WemahuAjax
 		$View->reportId = $reportId;
 		$View->ReportItem = $ReportItem;
 		$View->useApi = ((int)$this->options['use_api'] === 1) ? true : false;
-		$this->JsonResponse->setData('modalHtml', $View->loadTemplate(WP_PLUGIN_DIR . '/wp_wemahu/admin/views/ajax/report_item_modal.php'));
+		$this->JsonResponse->setData('modalHtml', $View->loadTemplate(WP_PLUGIN_DIR . '/wemahu/admin/views/ajax/report_item_modal.php'));
 		echo $this->JsonResponse->getResponseData();
 		exit;
 	}

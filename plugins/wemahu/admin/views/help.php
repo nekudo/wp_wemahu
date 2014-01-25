@@ -25,11 +25,11 @@
 		In the plugin options you can select a ruleset to be used in this case. You can further define an email-address which will be used to receive the reports.<br />
 		Please point your cronjob to the following path:
 	</p>
-	<pre>/path/to/wordpress/wp-content/plugins/wp_wemahu/wemahu_cli.php</pre>
+	<pre>/path/to/wordpress/wp-content/plugins/wemahu/wemahu_cli.php</pre>
 	<p>An example entry in your crontab file could look like this:</p>
-	<pre>0 2 * * * php /var/www/wordpress/wp-content/plugins/wp_wemahu/wemahu_cli.php</pre>
+	<pre>0 2 * * * php /var/www/wordpress/wp-content/plugins/wemahu/wemahu_cli.php</pre>
 	<p>This would run the Wemahu scanner every night at 02:00.</p>
 	<p>If you want to run multiple cronjobs with different rulesets you can pass a ruleset id with the --ruleset parameter.</p>
-	<pre>0 2 * * * php /var/www/wordpress/wp-content/plugins/wp_wemahu/wemahu_cli.php --ruleset 2</pre>
+	<pre>0 2 * * * php /var/www/wordpress/wp-content/plugins/wemahu/wemahu_cli.php --ruleset 2</pre>
 	<p><span class="label label-warning">Hint</span> You have to use a real cronjob. Calling the script periodically using an URL will not work!</p>
 </div>

@@ -64,15 +64,15 @@ class WemahuCli
 		$WemahuSettings->auditSettings['filecheck']['regexCheck'] = ((int)$Ruleset->regex_check === 1) ? true : false;
 		$WemahuSettings->auditSettings['filecheck']['hashCheck'] = ((int)$Ruleset->hash_check === 1) ? true : false;
 		$WemahuSettings->auditSettings['filecheck']['scanDir'] = ABSPATH;
-		$WemahuSettings->auditSettings['filecheck']['tmpDir'] = WP_PLUGIN_DIR . '/wp_wemahu/tmp';
-		$WemahuSettings->auditSettings['filecheck']['pathRegexWhitelistUser'] = WP_PLUGIN_DIR . '/wp_wemahu/tmp/wemahu_regex_whitelist.wmdb';
+		$WemahuSettings->auditSettings['filecheck']['tmpDir'] = WP_PLUGIN_DIR . '/wemahu/tmp';
+		$WemahuSettings->auditSettings['filecheck']['pathRegexWhitelistUser'] = WP_PLUGIN_DIR . '/wemahu/tmp/wemahu_regex_whitelist.wmdb';
 		if(!empty($Ruleset->scandir))
 		{
 			$WemahuSettings->auditSettings['filecheck']['scanDir'] = $Ruleset->scandir;
 		}
 		if(!empty($Ruleset->regex_db))
 		{
-			$WemahuSettings->auditSettings['filecheck']['pathRegexDb'] = WP_PLUGIN_DIR . '/wp_wemahu/admin/libs/wemahu/db/' . $Ruleset->regex_db . '.wmdb';
+			$WemahuSettings->auditSettings['filecheck']['pathRegexDb'] = WP_PLUGIN_DIR . '/wemahu/admin/libs/wemahu/db/' . $Ruleset->regex_db . '.wmdb';
 		}
 		if(!empty($Ruleset->filetypes))
 		{
