@@ -17,6 +17,9 @@
 				<div class="modal-body">
 					<div id="wmAjaxSystemMsg"></div>
 
+					<h4>Affected file</h4>
+					<pre><?php echo $this->ReportItem->affectedFile; ?></pre>
+
 					<h4>Explanation</h4>
 					<p class="reportItemDesc"><?php echo htmlentities($this->ReportItem->matchDescription); ?></p>
 
@@ -48,6 +51,9 @@
 				</div>
 				<div class="modal-body">
 					<div id="wmAjaxSystemMsg"></div>
+
+					<h4>Affected file</h4>
+					<pre><?php echo $this->ReportItem->affectedFile; ?></pre>
 
 					<h4>Explanation</h4>
 					<p>

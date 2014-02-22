@@ -72,6 +72,7 @@ class ModelRuleset
 					'%s', // scandir
 					'%d', // regex_check
 					'%d', // hash_check
+					'%s', // hash_check_blacklist
 					'%s', // filetypes
 					'%d', // filesize_max
 					'%s', // regex_db
@@ -91,6 +92,7 @@ class ModelRuleset
 					'%s', // scandir
 					'%d', // regex_check
 					'%d', // hash_check
+					'%s', // hash_check_blacklist
 					'%s', // filetypes
 					'%d', // filesize_max
 					'%s', // regex_db

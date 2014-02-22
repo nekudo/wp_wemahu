@@ -8,13 +8,12 @@
 
 class Wemahu
 {
-	const VERSION = '1.0.0';
+	const VERSION = '1.0.1';
 	protected $plugin_slug = 'wemahu';
 
 	protected static $instance = null;
 
 	private function __construct()
-
 	{	// enable on new wpmu blog
 		//add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 	}
@@ -236,6 +235,7 @@ class Wemahu
 		  regex_check tinyint(1) unsigned NOT NULL DEFAULT '1',
 		  regex_db varchar(50) NOT NULL,
 		  hash_check tinyint(1) unsigned NOT NULL DEFAULT '1',
+		  hash_check_blacklist text NOT NULL,
 		  filetypes varchar(250) NOT NULL,
 		  filesize_max bigint(20) unsigned NOT NULL,
 		  max_results_file int(10) unsigned NOT NULL DEFAULT '5',
@@ -251,12 +251,13 @@ class Wemahu
 			'regex_check' => 1,
 			'regex_db' => 'regex_complete',
 			'hash_check' => 1,
+			'hash_check_blacklist' => '',
 			'filetypes' => 'php,php4,php5,jpg,png,gif,js,html,htm,xml,htaccess',
 			'filesize_max' => '500000',
 			'max_results_file' => 5,
 			'max_results_total' => 100,
 		));
 
-		add_option('wemahu_db_version', '1.0.0');
+		add_option('wemahu_db_version', '1.0.1');
 	}
 }

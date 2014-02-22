@@ -70,6 +70,7 @@ class WemahuCli
 		{
 			$WemahuSettings->auditSettings['filecheck']['scanDir'] = $Ruleset->scandir;
 		}
+		$WemahuSettings->auditSettings['filecheck']['scanDir'] = rtrim($WemahuSettings->auditSettings['filecheck']['scanDir'], '/');
 		if(!empty($Ruleset->regex_db))
 		{
 			$WemahuSettings->auditSettings['filecheck']['pathRegexDb'] = WP_PLUGIN_DIR . '/wemahu/admin/libs/wemahu/db/' . $Ruleset->regex_db . '.wmdb';
@@ -89,6 +90,10 @@ class WemahuCli
 		if(!empty($Ruleset->max_results_total))
 		{
 			$WemahuSettings->auditSettings['filecheck']['maxResultsTotal'] = $Ruleset->max_results_total;
+		}
+		if($WemahuSettings->auditSettings['filecheck']['hashCheck'] === true && !empty($Ruleset->hash_check_blacklist))
+		{
+			$WemahuSettings->auditSettings['filecheck']['hashCheckBlacklist'] = explode("\n", str_replace("\r", "", $Ruleset->hash_check_blacklist));
 		}
 
 		// Init Wemahu:

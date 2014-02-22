@@ -12,7 +12,7 @@
  * Plugin Name:       Wemahu
  * Plugin URI:        http://nekudo.com/wemahu
  * Description:       A crowd based malware scanner for wordpress.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Simon Samtleben
  * Author URI:        http://nekudo.com
  * License:           GPL-2.0+

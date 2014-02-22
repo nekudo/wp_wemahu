@@ -18,6 +18,7 @@ class AuditFilecheck extends AuditBase implements Audit
 	protected $tmpDir = '/tmp';
 	protected $regexCheck = true;
 	protected $hashCheck = true;
+	protected $hashCheckBlacklist = array();
 	protected $extensionFilter = 'php,php4,php5';
 	protected $sizeFilter = 0;
 	protected $maxResultsFile = 5;
@@ -69,6 +70,7 @@ class AuditFilecheck extends AuditBase implements Audit
 		if($this->hashCheck === true)
 		{
 			$this->_validateFilehashDb();
+			$this->_prepareHashcheckBlacklist();
 		}
 
 		$this->Storage->set('filesInStack', $this->_filesInStack, 'filecheck');
@@ -103,6 +105,11 @@ class AuditFilecheck extends AuditBase implements Audit
 		if($this->regexCheck === true)
 		{
 			$this->_prepareRegexCheck();
+		}
+
+		if($this->hashCheck === true)
+		{
+			$this->_prepareHashcheckBlacklist();
 		}
 	}
 
@@ -163,6 +170,7 @@ class AuditFilecheck extends AuditBase implements Audit
 	 *
 	 * @todo Submit data to nekudo.com for analysis.
 	 *
+	 * @throws AuditException
 	 * @param ReportItem $ReportItem The item that should be added to whitelist.
 	 * @return boolean True if item was added to whitelist false on error.
 	 */
@@ -408,6 +416,7 @@ class AuditFilecheck extends AuditBase implements Audit
 		{
 			return true;
 		}
+
 		$this->_filestackPath = $row->path;
 		$this->Storage->set('filestackPath', $this->_filestackPath, 'filecheck');
 		return $this->_filestackProcessDir($row->path);
@@ -432,7 +441,7 @@ class AuditFilecheck extends AuditBase implements Audit
 				for($i = 0; $i < $patternHits; $i++)
 				{
 					// check if match is whitelisted:
-					$matchSnippet = substr($fileContent, $patternMatches[$i][1] - 100, 250);
+					$matchSnippet = substr($fileContent, $patternMatches[$i][1] - strlen($patternMatches[$i][0]), 300);
 					if($this->_regexMatchIsWhitelisted($matchSnippet, $path) === true)
 					{
 						continue;
@@ -462,6 +471,10 @@ class AuditFilecheck extends AuditBase implements Audit
 
 	private function _hashCheck($path)
 	{
+		if($this->_pathIsBlacklisted($path) === true)
+		{
+			return true;
+		}
 		$pathhash = sha1($path);
 		$filehash = sha1_file($path);
 		$this->Database->setQuery("SELECT fh.filehash
@@ -536,5 +549,51 @@ class AuditFilecheck extends AuditBase implements Audit
 		$valueChain = $this->scanDir . '###' . $this->extensionFilter . '###' . $this->sizeFilter;
 		$checksum = sha1($valueChain);
 		return $checksum;
+	}
+
+	/**
+	 * Converts relative blacklisted folders in to absolute paths and checks their existence.
+	 *
+	 * @return bool true.
+	 */
+	private function _prepareHashcheckBlacklist()
+	{
+		if(empty($this->hashCheckBlacklist))
+		{
+			return true;
+		}
+		$blacklistedPaths = array();
+		foreach($this->hashCheckBlacklist as $subfolder)
+		{
+			$path = $this->scanDir . '/' . trim($subfolder, '/');
+			if(file_exists($path) && is_dir($path))
+			{
+				$blacklistedPaths[] = $path;
+			}
+		}
+		$this->hashCheckBlacklist = $blacklistedPaths;
+		return true;
+	}
+
+	/**
+	 * Checks if a path is in the path blacklist.
+	 *
+	 * @param strign $path The path to check.
+	 * @return bool True if path is blacklisted or false otherwise.
+	 */
+	private function _pathIsBlacklisted($path)
+	{
+		if(empty($this->hashCheckBlacklist))
+		{
+			return false;
+		}
+		foreach($this->hashCheckBlacklist as $blacklistedPath)
+		{
+			if(strpos($path, $blacklistedPath) === 0)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

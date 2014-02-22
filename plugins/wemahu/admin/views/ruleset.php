@@ -41,20 +41,29 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">Use RegEx-Check</th>
+				<th scope="row">Use Signature-Check</th>
 				<td>
 					<label for="regex_check">
 						<input type="checkbox" value="1" <?php if((int)$rulesetData['regex_check'] === 1): ?> checked="checked" <?php endif; ?> id="regex_check" name="ruleset[regex_check]" />
-						This check will scan files for malicious code using a regular-expression database.
+						This check will scan files for malicious code using a signature database.
 					</label>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">Use Hash-Check</th>
+				<th scope="row">Use Modification-Check</th>
 				<td>
 					<label for="hash_check">
 						<input type="checkbox" value="1" <?php if((int)$rulesetData['hash_check'] === 1): ?> checked="checked" <?php endif; ?> id="hash_check" name="ruleset[hash_check]" />
-						This check will check files for changes since last scan using hash-values.
+						This check will check files for modifications since last scan using hash-values.
+					</label>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">Modification blacklist</th>
+				<td>
+					<label for="hash_check">
+						<textarea type="textarea" id="hash_check_blacklist" name="ruleset[hash_check_blacklist]" class="regular-text ltr" rows="5" cols="40"><?php echo $rulesetData['hash_check_blacklist']; ?></textarea><br />
+						<span class="description">In this field you can enter paths which should not be scanned for file modifications like e.g. your cache folder. One path per line. The path has to be relative to your scan folder.</span>
 					</label>
 				</td>
 			</tr>

@@ -31,7 +31,7 @@
 				<tr class="wmReportItem" data-reportitemid="<?php echo $i; ?>">
 					<td><?php echo $itemCount; ?></td>
 					<td><?php echo $ReportItem->matchName; ?></td>
-					<td><?php echo htmlentities($ReportItem->match); ?></td>
+					<td><?php echo htmlentities(substr($ReportItem->matchSnippet, 0, 100)); ?></td>
 					<td><?php echo $ReportItem->affectedFile; ?></td>
 				</tr>
 				<?php $itemCount++; ?>

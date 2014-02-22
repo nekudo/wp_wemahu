@@ -42,6 +42,7 @@ class Settings
 				'pathRegexWhitelist' => __DIR__ . '/db/regex_whitelist.wmdb',
 				'regexCheck' => true,
 				'hashCheck' => true,
+				'hashCheckBlacklist' => array(),
 				'extensionFilter' => 'php,php4,php5,js,html,gif,png,jpg',
 				'sizeFilter' => 1024 * 500, // 500kb
 				'maxResultsFile' => 5,
