@@ -60,6 +60,7 @@ Features:
 = 1.0.1 =
 * Added blacklist to exclude folders from file-modification check.
 * Minor layout improvements.
+* Signature/Whitelist updates.
 
 = 1.0.0 =
 * First version.
