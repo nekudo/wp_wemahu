@@ -29,7 +29,17 @@ class Wemahu
 		{
 			self::$instance = new self;
 		}
+		self::updateDb();
 		return self::$instance;
+	}
+
+	public function updateDb()
+	{
+		$installed_ver = get_option('wemahu_db_version');
+		if( $installed_ver != self::VERSION )
+		{
+			self::createTables(true);
+		}
 	}
 
 	/**
@@ -173,7 +183,7 @@ class Wemahu
 		delete_option('wemahu_db_version');
 	}
 
-	private static function createTables()
+	private static function createTables($update = false)
 	{
 		global $wpdb;
 
@@ -245,19 +255,21 @@ class Wemahu
 		) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
 		dbDelta($query);
 
-		$wpdb->insert($wmRulesets, array(
-			'name' => 'default',
-			'scandir' => '',
-			'regex_check' => 1,
-			'regex_db' => 'regex_complete',
-			'hash_check' => 1,
-			'hash_check_blacklist' => '',
-			'filetypes' => 'php,php4,php5,jpg,png,gif,js,html,htm,xml,htaccess',
-			'filesize_max' => '500000',
-			'max_results_file' => 5,
-			'max_results_total' => 100,
-		));
-
-		add_option('wemahu_db_version', '1.0.1');
+		if($update === false)
+		{
+			$wpdb->insert($wmRulesets, array(
+				'name' => 'default',
+				'scandir' => '',
+				'regex_check' => 1,
+				'regex_db' => 'regex_complete',
+				'hash_check' => 1,
+				'hash_check_blacklist' => '',
+				'filetypes' => 'php,php4,php5,jpg,png,gif,js,html,htm,xml,htaccess',
+				'filesize_max' => '500000',
+				'max_results_file' => 5,
+				'max_results_total' => 100,
+			));
+		}
+		update_option('wemahu_db_version', '1.0.1');
 	}
 }
