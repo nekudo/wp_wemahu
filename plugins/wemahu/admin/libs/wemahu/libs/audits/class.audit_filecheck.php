@@ -441,7 +441,7 @@ class AuditFilecheck extends AuditBase implements Audit
 				for($i = 0; $i < $patternHits; $i++)
 				{
 					// check if match is whitelisted:
-					$matchSnippet = substr($fileContent, $patternMatches[$i][1] - strlen($patternMatches[$i][0]), 300);
+					$matchSnippet = substr($fileContent, $patternMatches[$i][1] - 100, 250);
 					if($this->_regexMatchIsWhitelisted($matchSnippet, $path) === true)
 					{
 						continue;
