@@ -8,7 +8,7 @@
 
 class Wemahu
 {
-	const VERSION = '1.0.1';
+	const VERSION = '1.0.2';
 	protected $plugin_slug = 'wemahu';
 
 	protected static $instance = null;
@@ -270,6 +270,6 @@ class Wemahu
 				'max_results_total' => 100,
 			));
 		}
-		update_option('wemahu_db_version', '1.0.1');
+		update_option('wemahu_db_version', '1.0.2');
 	}
 }

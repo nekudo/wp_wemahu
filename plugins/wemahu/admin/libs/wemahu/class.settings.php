@@ -15,7 +15,7 @@ class Settings
 {
 	public $intervalMode = false;
 	public $intervalMaxLength = 5;
-	public $apiUrl = 'http://wmapi.nekudo.com';
+	public $apiUrl = 'http://api.wemahu.com';
 	public $useApi = true;
 
 	public $audits = array();
